@@ -34,7 +34,10 @@ class PostController extends Controller
         }
     }
     public function posts(){
-        $posts = Post::with('category')->paginate();
+        $posts = Post::with('category')->paginate(10);
+        if(!$posts){
+            return responseJson(0, 'Posts not found');
+        }
         return responseJson(1, 'success', $posts);
     }
     // favouritePost

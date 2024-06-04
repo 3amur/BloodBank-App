@@ -67,26 +67,25 @@ class MainController extends Controller
     public function notificationSettings(Request $request, Client $client)
     {
         $validated = validator()->make($request->all(), [
-            'blood_type_id' => 'required|exists:blood_types,id|string',
-            'city_id' => 'required|exists:cities,id',
+            'blood_type_id.*' => 'required|exists:blood_types,id',
+            'government_id.*' => 'required|exists:governments,id',
+
         ]);
         if ($validated->fails()) {
             $errors = $validated->errors()->all();
             return responseJson(0, $errors);
         }
         $client = $request->user();
-        $client->update($request->all());
-        if ($client->save()) {
-            return responseJson(1, 'تم اضافه الاشعارات بنجاح', $client);
-        }
-        //Blood types
+        // Blood types
         if ($request->has('blood_type_id')) {
-            $bloodType = BloodType::where('name', $request->blood_type_id)->first();
-            $client->bloodTypes()->sync($bloodType);
+            $bloodTypeId = $request->blood_type_id;
+            $types = $client->bloodTypes()->sync($bloodTypeId);
         }
-        //city
-        if ($request->has('city_id')) {
-            $client->cities()->sync($request->city_id);
+        // Government
+        if ($request->has('government_id')) {
+            $governmentId = $request->government_id;
+            $governments = $client->governments()->sync($governmentId);
         }
+        return responseJson(1, 'success', ['types' => $types, 'governments' => $governments]);
     }
 }

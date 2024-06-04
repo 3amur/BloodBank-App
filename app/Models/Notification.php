@@ -9,11 +9,11 @@ class Notification extends Model
 
     protected $table = 'notifications';
     public $timestamps = true;
-    protected $fillable = array('title', 'content');
+    protected $fillable = array('title', 'content', 'donation_request_id');
 
     public function donationRequest()
     {
-        return $this->hasOne('App\Models\DonationRequest');
+        return $this->belongsTo('App\Models\DonationRequest');
     }
 
     public function clients()

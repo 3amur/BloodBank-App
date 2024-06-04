@@ -135,21 +135,17 @@ class AuthController extends Controller
             return responseJson(0, $errors);
         }
         $client = $request->user();
+        if($request->password){
+            $request->merge(['password' => $request->password]);
+        }
         $client->update($request->all());
+        if($request->password){
+            $client->password = bcrypt($request->password);
+            $client->save();
+        }
         if ($client->save()) {
             return responseJson(1, 'تم تحديث البيانات بنجاح', $client);
         }
         return responseJson(0, 'حدث خطا حاول مره اخري');
-        //City
-        if ($request->has('city_id')) {
-            $client->cities()->detach($request->city_id);
-            $client->cities()->attach($request->city_id);
-        }
-        //BloodType
-        if ($request->has('blood_type')) {
-            $blood_type = BloodType::where('name', $request->blood_type)->first();
-            $client->bloodTypes()->detach($blood_type->id);
-            $client->bloodTypes()->attach($blood_type->id);
-        }
     }
 }

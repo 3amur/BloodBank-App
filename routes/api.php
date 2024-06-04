@@ -1,8 +1,10 @@
 <?php
 
 use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\DonationRequestController;
 use App\Http\Controllers\Api\MainController;
 use App\Http\Controllers\Api\PostController;
+use App\Http\Controllers\Api\TokenController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 /*
@@ -36,6 +38,11 @@ Route::middleware('auth:sanctum')->group(function ()
     Route::get('posts', [PostController::class, 'posts']);
     Route::post('favourite',[PostController::class, 'favouritePost']);
     Route::get('favouritePosts',[PostController::class, 'favouritePosts']);
+    Route::post('registerToken',[TokenController::class, 'registerToken']);
+    Route::post('removeToken',[TokenController::class, 'removeToken']);
+    Route::post('donationRequest-create', [DonationRequestController::class, 'createDonationRequest']);
+    Route::get('donationRequests', [DonationRequestController::class, 'donationRequests']);
+    Route::get('donationRequest', [DonationRequestController::class, 'donationRequest']);
     Route::post('settings', [MainController::class, 'settings']);
     Route::get('categories', [MainController::class, 'categories']);
     Route::post('contact-us', [MainController::class, 'contactUs']);

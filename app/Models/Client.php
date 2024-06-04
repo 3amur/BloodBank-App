@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Token;
 use Hamcrest\Xml\HasXPath;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Support\Facades\Hash;
@@ -41,15 +42,19 @@ class Client extends Model
     {
         return $this->morphedByMany('App\Models\Government', 'clientable');
     }
-
+    // belongs to Changed
     public function cities()
     {
-        return $this->belongsTo('App\Models\City');
+        return $this->morphedByMany('App\Models\City', 'clientable');
     }
 
     public function donationRequests()
     {
         return $this->hasMany('App\Models\DonationRequest');
+    }
+    
+    public function tokens(){
+        return $this->hasMany(Token::class);
     }
 
 }
