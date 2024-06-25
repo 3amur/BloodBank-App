@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Models\Client;
 use App\Models\BloodType;
 use App\Mail\ResetPassword;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use App\Http\Controllers\Controller;
@@ -15,25 +16,29 @@ class AuthController extends Controller
 {
     public function register(Request $request, Client $client)
     {
-        $validated = $request->validate([
+        $validated = validator()->make($request->all(),[
             'name' => 'required|string|min:3|max:30',
-            'email' => 'required|email|unique:clients,email|max:30',
-            'password' => 'required|string|max:25',
-            'phone' => 'required|string|max:15',
-            'd_o_b' => 'required|date|max:10',
-            'blood_type_id' => 'required|integer',
+            'email' => 'required|email|unique:clients,email',
+            'password' => 'required|confirmed|string|max:25',
+            'phone' => 'required|unique:clients,phone|string',
+            'd_o_b' => 'required|date|before:today',
+            'blood_type_id' => 'required|exists:blood_types,id',
             'city_id' => 'required|integer',
-            'last_donation_date' => 'required|date',
+            'last_donation_date' => 'required|before_or_equal:today',
         ]);
+        // check Validation Errors
+        if ($validated->fails()) {
+            return responseJson(0, $validated->errors()->first(), $validated->errors());
+        }
+        // Register Client in DB
+        $client = Client::create($request->all());
+        // Create Token For Client
+        $token = $client->createToken('Api_Token')->plainTextToken;
 
-        $hashedPassword = Hash::make($validated['password']);
-        $validated['password'] = $hashedPassword;
-        $client = Client::create($validated);
-
-        return response()->json([
-            $client,
-            'success' => 'Data Created Successfully'
-        ], 201);
+        return responseJson(1, 'تم التسجيل بنجاح',[
+            'api_token' => $token,
+            'client' => $client,
+        ]);
     }
 
     public function login(Request $request)
@@ -119,13 +124,13 @@ class AuthController extends Controller
     public function Profile(Request $request, Client $client)
     {
         $validated = validator()->make($request->all(), [
-            'password'  => 'required|confirmed',
+            'password'  => 'confirmed',
             'email'     =>  [
-                'required', 'email',
+                'email',
                 Rule::unique('clients')->ignore($request->user()->id)
             ],
             'phone'     =>  [
-                'required', 'string',
+                'string',
                 Rule::unique('clients')->ignore($request->user()->id),
             ],
         ]);

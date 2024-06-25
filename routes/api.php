@@ -17,35 +17,39 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "api" middleware group. Make something great!
 |
 */
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
-// Auth Cycle Routes (Registrations)
-Route::post('client-register', [AuthController::class, 'register']);
-Route::post('client-login', [AuthController::class, 'login']);
-// Reset Password && New Password
-Route::post('reset-password', [AuthController::class, 'resetPassword']);
-Route::post('new-password', [AuthController::class, 'newPassword']);
 
-Route::get('blood-types', [MainController::class, 'bloodTypes']);
-Route::get('governments', [MainController::class, 'governments']);
-Route::get('cities', [MainController::class, 'cities']);
+// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
 
-// General Api Routes
-Route::middleware('auth:sanctum')->group(function () 
-{
-    Route::post('post', [PostController::class, 'createPost']);
-    Route::get('posts', [PostController::class, 'posts']);
-    Route::post('favourite',[PostController::class, 'favouritePost']);
-    Route::get('favouritePosts',[PostController::class, 'favouritePosts']);
-    Route::post('registerToken',[TokenController::class, 'registerToken']);
-    Route::post('removeToken',[TokenController::class, 'removeToken']);
-    Route::post('donationRequest-create', [DonationRequestController::class, 'createDonationRequest']);
-    Route::get('donationRequests', [DonationRequestController::class, 'donationRequests']);
-    Route::get('donationRequest', [DonationRequestController::class, 'donationRequest']);
-    Route::post('settings', [MainController::class, 'settings']);
-    Route::get('categories', [MainController::class, 'categories']);
-    Route::post('contact-us', [MainController::class, 'contactUs']);
-    Route::post('profile', [AuthController::class, 'profile']);
-    Route::post('notification-settings', [MainController::class, 'notificationSettings']);
+Route::group(['prefix' => 'v1'], function () {
+    // Auth Cycle Routes (Registrations)
+    Route::post('client-register', [AuthController::class, 'register']);
+    Route::post('client-login', [AuthController::class, 'login']);
+    // Reset Password && New Password
+    Route::post('reset-password', [AuthController::class, 'resetPassword']);
+    Route::post('new-password', [AuthController::class, 'newPassword']);
+
+    Route::get('blood-types', [MainController::class, 'bloodTypes']);
+    Route::get('governments', [MainController::class, 'governments']);
+    Route::get('cities', [MainController::class, 'cities']);
+
+    
+    // General Api Routes with Authentication
+    Route::middleware('auth:sanctum')->group(function () {
+        Route::post('registerToken', [TokenController::class, 'registerToken']);
+        Route::post('removeToken', [TokenController::class, 'removeToken']);
+        Route::post('post', [PostController::class, 'createPost']);
+        Route::get('posts', [PostController::class, 'posts']);
+        Route::post('favourite', [PostController::class, 'favouritePost']);
+        Route::get('favouritePosts', [PostController::class, 'favouritePosts']);
+        Route::post('donationRequest-create', [DonationRequestController::class, 'createDonationRequest']);
+        Route::get('donationRequests', [DonationRequestController::class, 'donationRequests']);
+        Route::get('donationRequest', [DonationRequestController::class, 'donationRequest']);
+        Route::post('settings', [MainController::class, 'settings']);
+        Route::get('categories', [MainController::class, 'categories']);
+        Route::post('contact-us', [MainController::class, 'contactUs']);
+        Route::post('profile', [AuthController::class, 'profile']);
+        Route::post('notification-settings', [MainController::class, 'notificationSettings']);
+    });
 });

@@ -56,7 +56,7 @@ class DonationRequestController extends Controller
                     'donation_request_id' => $donationRequest->id,
                 ];
                 $send = notifyByFirebase($title, $body, $tokens, $data);
-                // info('Firebase result: ' . $send);
+                info('Firebase result: ' . $send);
             }
         }
         return responseJson(1, 'تم اضافه الطلب بنجاح', compact('donation', 'send'));

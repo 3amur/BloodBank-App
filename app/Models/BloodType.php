@@ -10,7 +10,7 @@ class BloodType extends Model
     use HasFactory;
     protected $table = 'blood_types';
     public $timestamps = true;
-    protected $fillable = array('type');
+    protected $fillable = array('name');
 
     public function clients()
     {

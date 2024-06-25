@@ -20,7 +20,8 @@ class TokenController extends Controller
         }
         // Delete anty Token
         $token->where('token', $request->token)->delete();
-        $token =$request->user()->tokens()->create($request->all());
+        // dd($request->user());
+        $token = $request->user()->tokenss()->create($request->all());
         return responseJson(1, 'تم التسجيل بنجاح', $token);
     }
 

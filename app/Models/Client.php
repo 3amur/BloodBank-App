@@ -5,7 +5,6 @@ namespace App\Models;
 use App\Models\Token;
 use Hamcrest\Xml\HasXPath;
 use Laravel\Sanctum\HasApiTokens;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -21,7 +20,7 @@ class Client extends Model
         'password',
     ];
     public function setPasswordAttribute($value){
-        $this->attributes['password'] = Hash::make($value);
+        $this->attributes['password'] = bcrypt($value);
     }
     public function posts()
     {
@@ -53,7 +52,7 @@ class Client extends Model
         return $this->hasMany('App\Models\DonationRequest');
     }
     
-    public function tokens(){
+    public function tokenss(){
         return $this->hasMany(Token::class);
     }
 
