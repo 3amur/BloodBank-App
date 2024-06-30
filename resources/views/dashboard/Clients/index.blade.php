@@ -49,9 +49,9 @@
                             <td>{{ $record->name }}</td>
                             <td>{{ $record->email }}</td>
                             <td>{{ $record->d_o_b }}</td>
-                            <td>{{ $record->bloodType ? $record->bloodTypes->name : 'No BloodType Assigned' }}</td>
+                            <td>{{ $record->bloodType ? $record->bloodType->name : 'No BloodType Assigned' }}</td>
                             <td>{{ $record->last_donation_date }}</td>
-                            <td>{{ $record->city ? $record->cities->name : 'No City Assigned' }}</td>
+                            <td>{{ $record->city ? $record->city->name : 'No City Assigned' }}</td>
                             <td>{{ $record->is_active }}</td>
                             <td><a href="{{ route('dashboard.activeclient', $record->id) }}" class="btn btn-success">Active</a></td>
                             <td><a href="{{ route('dashboard.deactiveclient', $record->id) }}" class="btn btn-danger">DeActive</a></td>

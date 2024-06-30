@@ -10,7 +10,7 @@ class ClientController extends Controller
 {
     public function index()
     {
-        $records = Client::with(['bloodTypes', 'cities'])->paginate(20);
+        $records = Client::with(['bloodType', 'city'])->paginate(20);
         return view('dashboard.clients.index', compact('records'));
     }
 
@@ -18,8 +18,8 @@ class ClientController extends Controller
     {
         $records = Client::where('name', 'LIKE', '%' . $request->search . '%')
         ->orWhere('is_active', 'LIKE', '%'. $request->search .'%')
-        ->get();
-        return view('dashboard.clients.search', compact('records'));
+        ->with(['bloodType', 'city'])->paginate(20);
+        return view('dashboard.clients.index', compact('records'));
     }
 
     public function active(Client $client, $id)

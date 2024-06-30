@@ -6,6 +6,7 @@ use App\Http\Controllers\Dashboard\CityController;
 use App\Http\Controllers\Dashboard\HomeController;
 use App\Http\Controllers\Dashboard\PostController;
 use App\Http\Controllers\Dashboard\ClientController;
+use App\Http\Controllers\Dashboard\SettingController;
 use App\Http\Controllers\Dashboard\CategoryController;
 use App\Http\Controllers\Dashboard\GovernmentController;
 
@@ -24,9 +25,9 @@ Route::get('/', function () {
     return view('layouts.app');
 });
 
-Auth::routes();
+Auth::routes([ 'verify' => true ]);
 
-Route::name('dashboard.')->group(function(){
+Route::name('dashboard.')->middleware('auth')->group(function(){
     Route::get('/home', [HomeController::class, 'index'])->name('home');
     // Governments Routes
     Route::get('/governments', [GovernmentController::class, 'index'])->name('governments');
@@ -52,6 +53,9 @@ Route::name('dashboard.')->group(function(){
     Route::get('/active-client/{id}', [ClientController::class, 'active'])->name('activeclient');
     Route::get('/deactive-client/{id}', [ClientController::class, 'deactive'])->name('deactiveclient');
     Route::delete('/delete-client/{id}', [ClientController::class, 'destroy'])->name('deleteclient');
+    // Settings Routes
+    Route::get('/settings', [SettingController::class, 'index'])->name('settings');
+    Route::get('/show-settings/{id}', [SettingController::class, 'edit'])->name('showSettings');
+    Route::put('/update-settings/{id}', [SettingController::class, 'update'])->name('updateSettings');
 
 });
-

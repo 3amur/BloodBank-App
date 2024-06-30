@@ -37,14 +37,24 @@ class Client extends Model
         return $this->morphedByMany('App\Models\BloodType', 'clientable');
     }
 
+    public function bloodType()
+    {
+        return $this->belongsto('App\Models\BloodType');
+    }
+
     public function governments()
     {
         return $this->morphedByMany('App\Models\Government', 'clientable');
     }
-    // belongs to Changed
+
     public function cities()
     {
         return $this->morphedByMany('App\Models\City', 'clientable');
+    }
+    // belongs to Changed
+    public function city()
+    {
+        return $this->belongsto('App\Models\City');
     }
 
     public function donationRequests()

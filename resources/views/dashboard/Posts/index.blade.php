@@ -57,4 +57,4 @@
                 {{ $records->links() }}
             </div>
         </div>
-        @endsection
+@endsection
