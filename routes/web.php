@@ -5,14 +5,17 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Dashboard\CityController;
 use App\Http\Controllers\Dashboard\HomeController;
 use App\Http\Controllers\Dashboard\PostController;
+use App\Http\Controllers\Dashboard\RoleController;
 use App\Http\Controllers\Dashboard\ClientController;
+use App\Http\Controllers\Dashboard\ContactController;
 use App\Http\Controllers\Dashboard\SettingController;
 use App\Http\Controllers\Dashboard\CategoryController;
 use App\Http\Controllers\Dashboard\GovernmentController;
+use App\Http\Controllers\Dashboard\DonationRequestController;
 
 /*
 |--------------------------------------------------------------------------
-| Web Routes
+| Admins Routes
 |--------------------------------------------------------------------------
 |
 | Here is where you can register web routes for your application. These
@@ -25,9 +28,9 @@ Route::get('/', function () {
     return view('layouts.app');
 });
 
-Auth::routes([ 'verify' => true ]);
+Auth::routes(['verify' => true]);
 
-Route::name('dashboard.')->middleware('auth')->group(function(){
+Route::name('dashboard.')->middleware('auth')->group(function () {
     Route::get('/home', [HomeController::class, 'index'])->name('home');
     // Governments Routes
     Route::get('/governments', [GovernmentController::class, 'index'])->name('governments');
@@ -57,5 +60,17 @@ Route::name('dashboard.')->middleware('auth')->group(function(){
     Route::get('/settings', [SettingController::class, 'index'])->name('settings');
     Route::get('/show-settings/{id}', [SettingController::class, 'edit'])->name('showSettings');
     Route::put('/update-settings/{id}', [SettingController::class, 'update'])->name('updateSettings');
-
+    // Contacts Routes
+    Route::get('/contacts', [ContactController::class, 'index'])->name('contacts');
+    Route::get('/search-contacts', [ContactController::class, 'search'])->name('searchContacts');
+    Route::delete('/delete-contact/{id}', [ContactController::class, 'destroy'])->name('deleteContact');
+    // Donation Requests Routes
+    Route::get('/donation-requests', [DonationRequestController::class, 'index'])->name('donations');
+    Route::get('/Show-donationRequest', [DonationRequestController::class, 'index'])->name('showDonationRequest');
+    Route::get('/search-donation-request', [DonationRequestController::class, 'search'])->name('searchDonationRequest');
+    Route::delete('/delete-donation-request/{id}', [DonationRequestController::class, 'destroy'])->name('deleteDonationRequest');
+    // Users Routes
+    Route::resource('/users', UserController::class);
+    // Roles Routes
+    Route::resource('/role', RoleController::class);
 });

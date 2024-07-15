@@ -186,6 +186,79 @@
                                 </li>
                             </ul>
                         </li>
+                        {{-- Contacts --}}
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fa fa-list"></i>
+                                <p>
+                                    Contacts
+                                    <i class="right fas fa-angle-left"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="{{ route('dashboard.contacts') }}" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>All Contacts</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        {{-- Donation Requests --}}
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fa fa-list"></i>
+                                <p>
+                                    Donation Requests
+                                    <i class="right fas fa-angle-left"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="{{ route('dashboard.donations') }}" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>All Donation Requests</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        {{-- Users --}}
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="ion ion-person-add"></i>
+                                <p>
+                                    Users
+                                    <i class="right fas fa-angle-left"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="{{ route('dashboard.users.index') }}" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>All Users</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        {{-- Roles --}}
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fa fa-list"></i>
+                                <p>
+                                    Roles 
+                                    <i class="right fas fa-angle-left"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="{{ route('dashboard.role.index') }}" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>All Roles</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        {{-- Settings --}}
                         <li class="nav-item">
                             <a href="{{ route('dashboard.settings') }}" class="nav-link">
                                 <i class="nav-icon fas fa-microchip"></i>
@@ -238,6 +311,7 @@
     <script src="{{ asset('adminlte/dist') }}/js/adminlte.min.js"></script>
     <!-- AdminLTE for demo purposes -->
     <script src="{{ asset('adminlte/dist') }}/js/demo.js"></script>
+    @stack('scripts')
 </body>
 
 </html>

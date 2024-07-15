@@ -23,7 +23,7 @@ class DatabaseSeeder extends Seeder
         // BloodType::factory(6)->create();
         // Client::factory(15)->create();
         // Category::factory(10)->create();
-        Setting::factory(1)->create();
+        // Setting::factory(1)->create();
 
         // \App\Models\User::create([
         //     'name' => 'Omar Khattab',
@@ -31,5 +31,9 @@ class DatabaseSeeder extends Seeder
         //     'password' => bcrypt(123456),
         // ]);
 
+        // $this->call([
+        //     RolesAndPermissionsSeeder::class,
+        //     UserSeeder::class,
+        // ]);
     }
 }

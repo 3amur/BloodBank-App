@@ -34,7 +34,7 @@ Route::group(['prefix' => 'v1'], function () {
     Route::get('governments', [MainController::class, 'governments']);
     Route::get('cities', [MainController::class, 'cities']);
 
-    
+
     // General Api Routes with Authentication
     Route::middleware('auth:sanctum')->group(function () {
         Route::post('registerToken', [TokenController::class, 'registerToken']);
