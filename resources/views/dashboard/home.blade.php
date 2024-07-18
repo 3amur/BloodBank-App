@@ -87,7 +87,7 @@
                         {{-- Governments --}}
                         <li class="nav-item">
                             <a href="#" class="nav-link">
-                                <i class="nav-icon fa fa-tachometer-alt"></i>
+                                <i class="nav-icon left fas fa-city"></i>
                                 <p>
                                     Governments
                                     <i class="right fas fa-angle-left"></i>
@@ -111,7 +111,7 @@
                         {{-- cities --}}
                         <li class="nav-item">
                             <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-tachometer-alt"></i>
+                                <i class="nav-icon fas fa-flag"></i>
                                 <p>
                                     Cities
                                     <i class="right fas fa-angle-left"></i>
@@ -135,7 +135,7 @@
                         {{-- Categories --}}
                         <li class="nav-item">
                             <a href="#" class="nav-link">
-                                <i class="nav-icon fa fa-list"></i>
+                                <i class="nav-icon fa fa-list-alt"></i>
                                 <p>
                                     Categories
                                     <i class="right fas fa-angle-left"></i>
@@ -150,28 +150,10 @@
                                 </li>
                             </ul>
                         </li>
-                        {{-- Clients --}}
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="ion ion-person-add"></i>
-                                <p>
-                                    Clients
-                                    <i class="right fas fa-angle-left"></i>
-                                </p>
-                            </a>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="{{ route('dashboard.clients') }}" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>All Clients</p>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
                         {{-- Posts --}}
                         <li class="nav-item">
                             <a href="#" class="nav-link">
-                                <i class="fa fa-list"></i>
+                                <i class="nav-icon fa fa-list-alt"></i>
                                 <p>
                                     Posts
                                     <i class="right fas fa-angle-left"></i>
@@ -186,20 +168,20 @@
                                 </li>
                             </ul>
                         </li>
-                        {{-- Contacts --}}
+                        {{-- Clients --}}
                         <li class="nav-item">
                             <a href="#" class="nav-link">
-                                <i class="nav-icon fa fa-list"></i>
+                                <i class="nav-icon fas fa-users"></i>
                                 <p>
-                                    Contacts
+                                    Clients
                                     <i class="right fas fa-angle-left"></i>
                                 </p>
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="{{ route('dashboard.contacts') }}" class="nav-link">
+                                    <a href="{{ route('dashboard.clients') }}" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
-                                        <p>All Contacts</p>
+                                        <p>All Clients</p>
                                     </a>
                                 </li>
                             </ul>
@@ -207,7 +189,7 @@
                         {{-- Donation Requests --}}
                         <li class="nav-item">
                             <a href="#" class="nav-link">
-                                <i class="nav-icon fa fa-list"></i>
+                                <i class="nav-icon fa fa-heart"></i>
                                 <p>
                                     Donation Requests
                                     <i class="right fas fa-angle-left"></i>
@@ -222,10 +204,46 @@
                                 </li>
                             </ul>
                         </li>
+                        {{-- Contacts --}}
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fa fa-phone"></i>
+                                <p>
+                                    Contacts
+                                    <i class="right fas fa-angle-left"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="{{ route('dashboard.contacts') }}" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>All Contacts</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        {{-- Roles --}}
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-list-ul"></i>
+                                <p>
+                                    Roles
+                                    <i class="right fas fa-angle-left"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="{{ route('dashboard.role.index') }}" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>All Roles</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
                         {{-- Users --}}
                         <li class="nav-item">
                             <a href="#" class="nav-link">
-                                <i class="ion ion-person-add"></i>
+                                <i class="nav-icon ion ion-person"></i>
                                 <p>
                                     Users
                                     <i class="right fas fa-angle-left"></i>
@@ -240,28 +258,19 @@
                                 </li>
                             </ul>
                         </li>
-                        {{-- Roles --}}
+                        {{-- Change Password --}}
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon fa fa-list"></i>
+                            <a href="{{ route('dashboard.changePassword') }}" class="nav-link">
+                                <i class="nav-icon fas fa-key"></i>
                                 <p>
-                                    Roles 
-                                    <i class="right fas fa-angle-left"></i>
+                                    Change Password
                                 </p>
                             </a>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="{{ route('dashboard.role.index') }}" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>All Roles</p>
-                                    </a>
-                                </li>
-                            </ul>
                         </li>
                         {{-- Settings --}}
                         <li class="nav-item">
                             <a href="{{ route('dashboard.settings') }}" class="nav-link">
-                                <i class="nav-icon fas fa-microchip"></i>
+                                <i class="nav-icon fas fa-edit"></i>
                                 <p>Settings</p>
                             </a>
                         </li>

@@ -22,11 +22,13 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'email',
-        'role',
         'status',
         'password',
     ];
 
+    public function getRolesListAttribute(){
+        return $this->roles()->pluck('id')->toArray();
+    }
     /**
      * The attributes that should be hidden for serialization.
      *

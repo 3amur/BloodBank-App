@@ -6,6 +6,7 @@ use App\Http\Controllers\Dashboard\CityController;
 use App\Http\Controllers\Dashboard\HomeController;
 use App\Http\Controllers\Dashboard\PostController;
 use App\Http\Controllers\Dashboard\RoleController;
+use App\Http\Controllers\Dashboard\UserController;
 use App\Http\Controllers\Dashboard\ClientController;
 use App\Http\Controllers\Dashboard\ContactController;
 use App\Http\Controllers\Dashboard\SettingController;
@@ -30,7 +31,7 @@ Route::get('/', function () {
 
 Auth::routes(['verify' => true]);
 
-Route::name('dashboard.')->middleware('auth')->group(function () {
+Route::name('dashboard.')->middleware(['auth',])->group(function () {
     Route::get('/home', [HomeController::class, 'index'])->name('home');
     // Governments Routes
     Route::get('/governments', [GovernmentController::class, 'index'])->name('governments');
@@ -46,10 +47,6 @@ Route::name('dashboard.')->middleware('auth')->group(function () {
     Route::get('/edit-city/{id}', [CityController::class, 'edit'])->name('editcity');
     Route::put('/update-city/{id}', [CityController::class, 'update'])->name('updatecity');
     Route::delete('/delete-city/{id}', [CityController::class, 'destroy'])->name('deletecity');
-    // Categories Routes
-    Route::resource('/categories', CategoryController::class);
-    // Posts routes
-    Route::resource('/posts', PostController::class);
     // Clients Routes
     Route::get('/clients', [ClientController::class, 'index'])->name('clients');
     Route::get('/search-clients', [ClientController::class, 'search'])->name('searchclient');
@@ -69,8 +66,15 @@ Route::name('dashboard.')->middleware('auth')->group(function () {
     Route::get('/Show-donationRequest', [DonationRequestController::class, 'index'])->name('showDonationRequest');
     Route::get('/search-donation-request', [DonationRequestController::class, 'search'])->name('searchDonationRequest');
     Route::delete('/delete-donation-request/{id}', [DonationRequestController::class, 'destroy'])->name('deleteDonationRequest');
+    // Categories Routes
+    Route::resource('/categories', CategoryController::class);
+    // Posts routes
+    Route::resource('/posts', PostController::class);
     // Users Routes
     Route::resource('/users', UserController::class);
+    // Change Password Routes
+    Route::get('/change-password', [UserController::class, 'changePassword'])->name('changePassword');
+    Route::post('/update-password/{id}', [UserController::class, 'updatePassword'])->name('updatePassword');
     // Roles Routes
     Route::resource('/role', RoleController::class);
 });
