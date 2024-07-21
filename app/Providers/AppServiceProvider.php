@@ -2,6 +2,9 @@
 
 namespace App\Providers;
 
+use App\Models\Setting;
+use App\Models\BloodType;
+use App\Models\Government;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\ServiceProvider;
 
@@ -20,7 +23,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        $settings = Setting::first();
+        view()->share(compact('settings'));
+        
         Paginator::useBootstrapFive();
-        // Paginator::useBootstrapFour();
+        Paginator::useBootstrapFour();
     }
 }

@@ -22,6 +22,7 @@ class SettingController extends Controller
         $data = $request->validate([
             'notification_settings_text' => 'string|min:3|max:1000',
             'about_app' => 'string|min:3|max:2000',
+            'about_us' => 'string|min:3|max:2000',
             'phone' => 'string|min:3|max:15',
             'email' => 'email|min:3|max:30',
             'fb_link' => 'string',

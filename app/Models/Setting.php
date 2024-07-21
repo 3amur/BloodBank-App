@@ -11,7 +11,7 @@ class Setting extends Model
     protected $table = 'settings';
     protected $fillable = [
         'notification_settings_text',
-        'about_app', 'phone', 'email', 'fb_link', 'tw_link', 'insta_link', 'you_link',
+        'about_app', 'about_us', 'phone', 'email', 'fb_link', 'tw_link', 'insta_link', 'you_link',
     ];
     public $timestamps = true;
 

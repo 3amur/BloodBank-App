@@ -1,15 +1,15 @@
 @extends('dashboard.home')
 @section('title')
-    Add Category
+    Add Client
 @endsection
 
 @section('content')
     <div class="row">
         <div class="col-lg-12 mx-auto">
-            <!--Add Category -->
+            <!--Add Client -->
             <div class="card card-primary">
                 <div class="card-header">
-                  <h3 class="card-title">Add Category</h3>
+                  <h3 class="card-title">Add Client</h3>
                 </div>
                 <div class="text-center">
                   @if (session()->has('success'))

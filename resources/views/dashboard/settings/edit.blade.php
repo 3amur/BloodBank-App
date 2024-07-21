@@ -36,6 +36,15 @@
                       @enderror
                     </div>
                     <div class="form-label">
+                      <label>About Us</label>
+                      <div>
+                        <textarea name="about_us" cols="10" rows="3" class="form-control">{{ $record->about_us }}</textarea>
+                      </div>
+                      @error('about_us')
+                        <small class="text-danger">{{ $message }}</small>
+                      @enderror
+                    </div>
+                    <div class="form-label">
                       <label>Phone</label>
                       <div>
                           <input type="number" name="phone" value="{{ $record->phone }}" placeholder="Enter Your Number" class="form-control">
